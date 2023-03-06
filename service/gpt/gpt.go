@@ -84,10 +84,9 @@ func (gpt *Gpt) Chat(sessionId int64, msg string, fn func(sessionId int64, respM
 	}
 	messageCache = append(messageCache, newMessage)
 	req := gogpt.ChatCompletionRequest{
-		Model:       gogpt.GPT3Dot5Turbo,
-		Messages:    messageCache,
-		Temperature: 0.5,
-		//MaxTokens:        4000,
+		Model:            gogpt.GPT3Dot5Turbo,
+		Messages:         messageCache,
+		Temperature:      0.5, //MaxTokens:        4000,
 		TopP:             0.3,
 		FrequencyPenalty: 0.5,
 		PresencePenalty:  0.0,

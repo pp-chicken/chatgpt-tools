@@ -50,7 +50,8 @@ func Run() {
 					bot.MessageResp(update, "清除对话记录失败: <nil>")
 				}
 			case "help":
-				bot.MessageResp(update, "这是一个机器人，你可以和他聊天，他会记住你的对话，如果你连续对话超过2小时，他会忘记之前的对话，如果你超过5分钟没有对话，他会忘记全部会话，如果你想清除对话记录，可以发送 /clear 命令")
+				bot.MessageResp(update,
+					"这是一个机器人，你可以和他聊天，他会记住你的对话，如果你连续对话超过2小时，他会忘记之前的对话，如果你超过5分钟没有对话，他会忘记全部会话，如果你想清除对话记录，可以发送 /clear 命令")
 			}
 			return
 		}
@@ -62,16 +63,18 @@ func Run() {
 						switch v.Type {
 						case "mention":
 							if bot.GetBot().IsMessageToMe(*update.Message) {
-								gpt3.Chat(update.Message.Chat.ID, update.Message.Text, func(sessionId int64, respMessage string) {
-									bot.MessageResp(update, respMessage)
-								})
+								gpt3.Chat(update.Message.Chat.ID, update.Message.Text,
+									func(sessionId int64, respMessage string) {
+										bot.MessageResp(update, respMessage)
+									})
 								return
 							}
 						case "text_mention":
 							if v.User.ID == bot.GetBot().Self.ID {
-								gpt3.Chat(update.Message.Chat.ID, update.Message.Text, func(sessionId int64, respMessage string) {
-									bot.MessageResp(update, respMessage)
-								})
+								gpt3.Chat(update.Message.Chat.ID, update.Message.Text,
+									func(sessionId int64, respMessage string) {
+										bot.MessageResp(update, respMessage)
+									})
 								return
 							}
 						}

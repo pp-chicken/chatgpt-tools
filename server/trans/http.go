@@ -1,9 +1,10 @@
 package trans
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"outspoken-goblin/utils"
+
+	"github.com/gin-gonic/gin"
 )
 
 const GptUrl = "https://api.openai.com/v1/chat/completions"
